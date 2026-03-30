@@ -24,8 +24,10 @@ Works best on Google Chrome for voice features.
 
 ##Screenshots
 
-1st image = ![image alt](https://github.com/Aviraj-Awasthi/Ai-news-liistener/blob/bd2fe097d78a4b874e046c9a98acae1eaca6014c/1.png)
-2nd image = ![image alt](https://github.com/Aviraj-Awasthi/Ai-news-liistener/blob/bd2fe097d78a4b874e046c9a98acae1eaca6014c/2.png)
-3rd image = ![image alt](https://github.com/Aviraj-Awasthi/Ai-news-liistener/blob/bd2fe097d78a4b874e046c9a98acae1eaca6014c/3.png)
+1st image : ![image alt](https://github.com/Aviraj-Awasthi/Ai-news-liistener/blob/bd2fe097d78a4b874e046c9a98acae1eaca6014c/1.png)
+
+2nd image : ![image alt](https://github.com/Aviraj-Awasthi/Ai-news-liistener/blob/bd2fe097d78a4b874e046c9a98acae1eaca6014c/2.png)
+
+3rd image : ![image alt](https://github.com/Aviraj-Awasthi/Ai-news-liistener/blob/bd2fe097d78a4b874e046c9a98acae1eaca6014c/3.png)
 
 
