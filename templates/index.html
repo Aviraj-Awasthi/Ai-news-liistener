@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI News Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="container">
+    <h1>📰 AI News Assistant</h1>
+    <p class="subtitle">
+      Hello! I can summarize the news headlines from the last 24 hours. Just ask me below.
+    </p>
+
+    <div class="card">
+      <h3>💬 News Headlines from the Last 24 Hours:</h3>
+      <ul>
+        <li>✅ AI-powered tools revolutionize healthcare diagnostics.</li>
+        <li>✅ Global stock markets decline amid inflation concerns.</li>
+        <li>✅ Breakthrough in solar panel efficiency.</li>
+        <li>✅ Tech companies invest in quantum computing.</li>
+        <li>✅ Top cybersecurity tips for 2024.</li>
+      </ul>
+    </div>
+
+    <div class="chat">
+      <div class="bot-msg">
+        🤖 Sure! Here are the top news headlines from the last 24 hours:
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Summarize today's headlines...">
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
