@@ -27,12 +27,12 @@ def chat():
         if not articles:
             return jsonify({"reply": "No news found brotha 😅"})
 
-        # ✅ Create list properly
+        # Create list properly
         headlines_html = ""
         for article in articles[:5]:
             headlines_html += f"<li> {article['title']}.</li>"
 
-        # ✅ Final reply
+        # Final reply
         reply = f" Here are top headlines:<br><ul>{headlines_html}</ul>"
 
     except Exception as e:

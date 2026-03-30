@@ -2,7 +2,7 @@ speechSynthesis.onvoiceschanged = () =>
 {
     speechSynthesis.getVoices();
 };
-// 🚀 SEND MESSAGE
+// SEND MESSAGE
 async function sendMessage() {
   const input = document.getElementById("userInput");
   const chat = document.querySelector(".chat");
@@ -10,13 +10,13 @@ async function sendMessage() {
   const message = input.value.trim();
   if (message === "") return;
 
-  // 🧑 Show user message
+// Show user message
   const userMsg = document.createElement("div");
   userMsg.textContent = "🧑 " + message;
   userMsg.style.textAlign = "right";
   chat.appendChild(userMsg);
 
-  // 📡 Send to Flask
+  // Send to Flask
   const response = await fetch("/chat", {
     method: "POST",
     headers: {
@@ -27,21 +27,22 @@ async function sendMessage() {
 
   const data = await response.json();
 
-  // 🤖 Show bot reply
+// Show bot reply
   const botMsg = document.createElement("div");
   botMsg.innerHTML = "🤖 " + data.reply;
   botMsg.classList.add("bot-msg");
   chat.appendChild(botMsg);
 
-  // 🔊 Speak reply (clean + paused)
+// Speak reply (clean + paused)
   speakText(data.reply);
 
   input.value = "";
 }
 
 
-// 🎤 VOICE INPUT
-function startListening() {
+// VOICE INPUT
+function startListening() 
+{
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
   recognition.lang = "en-IN";
@@ -50,10 +51,10 @@ function startListening() {
   recognition.onresult = function(event) {
     const text = event.results[0][0].transcript;
 
-    // ✅ Put into input
+// Put into input
     document.getElementById("userInput").value = text;
 
-    // 🚀 Auto send
+// Auto send
     sendMessage();
   };
 
@@ -63,9 +64,9 @@ function startListening() {
 }
 
 
-// 🔊 SMART SPEECH OUTPUT
+// SMART SPEECH OUTPUT
 function speakText(text) {
-    // 🛑 Stop any previous speech
+// Stop any previous speech
     window.speechSynthesis.cancel();
 
     const cleanText = text.replace(/<[^>]*>/g, "");
@@ -76,7 +77,7 @@ function speakText(text) {
     function getBestFemaleVoice() {
         const voices = speechSynthesis.getVoices();
 
-        // 🔥 Priority list (best sounding voices)
+// Priority list (best sounding voices)
         return voices.find(v => v.name.includes("Google UK English Female")) ||
                voices.find(v => v.name.includes("Google US English")) ||
                voices.find(v => v.name.toLowerCase().includes("female")) ||
@@ -96,7 +97,7 @@ function speakText(text) {
 
         const speech = new SpeechSynthesisUtterance(line);
 
-        // 🎙️ Better voice settings
+        // Better voice settings
         speech.voice = getBestFemaleVoice();
         speech.lang = "en-US";   // smoother accent
         speech.rate = 0.92;      // slower = clearer
