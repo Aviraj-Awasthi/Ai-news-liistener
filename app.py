@@ -30,7 +30,7 @@ def chat():
         # ✅ Create list properly
         headlines_html = ""
         for article in articles[:5]:
-            headlines_html += f"<li>📰 {article['title']}</li>"
+            headlines_html += f"<li> {article['title']}.</li>"
 
         # ✅ Final reply
         reply = f" Here are top headlines:<br><ul>{headlines_html}</ul>"
