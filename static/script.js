@@ -1,3 +1,7 @@
+speechSynthesis.onvoiceschanged = () =>
+{
+    speechSynthesis.getVoices();
+};
 // 🚀 SEND MESSAGE
 async function sendMessage() {
   const input = document.getElementById("userInput");
@@ -61,40 +65,53 @@ function startListening() {
 
 // 🔊 SMART SPEECH OUTPUT
 function speakText(text) {
-  // 🛑 Stop previous speech
-  window.speechSynthesis.cancel();
+    // 🛑 Stop any previous speech
+    window.speechSynthesis.cancel();
 
-  // Remove HTML
-  const cleanText = text.replace(/<[^>]*>/g, "");
+    const cleanText = text.replace(/<[^>]*>/g, "");
+    const lines = cleanText.split(/(?<=\.)\s+/);
 
-  // ✅ Split properly into sentences
-  const lines = cleanText.split(/(?<=\.)\s+/); 
-  // splits after each full stop
+    let index = 0;
 
-  let index = 0;
+    function getBestFemaleVoice() {
+        const voices = speechSynthesis.getVoices();
 
-  function speakNext() {
-    if (index >= lines.length) return;
-
-    const line = lines[index].trim();
-    index++;
-
-    if (line === "") {
-      speakNext();
-      return;
+        // 🔥 Priority list (best sounding voices)
+        return voices.find(v => v.name.includes("Google UK English Female")) ||
+               voices.find(v => v.name.includes("Google US English")) ||
+               voices.find(v => v.name.toLowerCase().includes("female")) ||
+               voices[0]; // fallback
     }
 
-    const speech = new SpeechSynthesisUtterance(line);
-    speech.lang = "en-IN";
-    speech.rate = 1;
-    speech.pitch = 1;
+    function speakNext() {
+        if (index >= lines.length) return;
 
-    speech.onend = () => {
-      setTimeout(speakNext, 500); // ⏸️ bigger pause
-    };
+        const line = lines[index].trim();
+        index++;
 
-    window.speechSynthesis.speak(speech);
-  }
+        if (!line) {
+            speakNext();
+            return;
+        }
 
-  speakNext();
+        const speech = new SpeechSynthesisUtterance(line);
+
+        // 🎙️ Better voice settings
+        speech.voice = getBestFemaleVoice();
+        speech.lang = "en-US";   // smoother accent
+        speech.rate = 0.92;      // slower = clearer
+        speech.pitch = 1.25;     // more feminine tone
+
+        speech.onend = () => {
+            setTimeout(speakNext, 300); // pause between lines
+        };
+
+        window.speechSynthesis.speak(speech);
+    }
+
+    speakNext();
+}
+function stopSpeech() 
+{
+    window.speechSynthesis.cancel();
 }
